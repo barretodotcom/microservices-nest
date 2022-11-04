@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    image: node:19-alpine3.15
+    build: .
+    container_name: nest
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+  mq:
+    restart: 'always'
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
